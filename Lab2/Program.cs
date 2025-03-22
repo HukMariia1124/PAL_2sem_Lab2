@@ -211,17 +211,13 @@ namespace Lab2
                     }
                 }
                 (min[smallest], min[i]) = (min[i], min[smallest]);
-                SwapСolumns(nums, i, smallest, arrayLength);
+                for (int k = 0; k < arrayLength; k++)
+                {
+                    (nums[k, i], nums[k, smallest]) = (nums[k, smallest], nums[k, i]);
+                }
             }
             Console.WriteLine("Матриця з відсортованими стовпцями за неспаданням мінімального елемента:");
             Print2DArray(nums);
-        }
-        static void SwapСolumns(int[,] arr, int i, int j, int n)
-        {
-            for (int k = 0; k < n; k++)
-            {
-                (arr[k, i], arr[k, j]) = (arr[k, j], arr[k, i]);
-            }
         }
         static int[,] FillTheArray()
         {
