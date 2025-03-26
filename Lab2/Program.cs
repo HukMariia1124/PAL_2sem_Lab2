@@ -15,7 +15,7 @@ namespace Lab2
         {
             Console.OutputEncoding = UTF8Encoding.UTF8;
             Console.InputEncoding = UTF8Encoding.UTF8;
-            
+
             string choice;
             do
             {
@@ -72,12 +72,12 @@ namespace Lab2
                         min = nums[i, j];
                     }
                 }
-                Console.Write($"В рядку #{i+1} мінімальний елемент {min} має індекси:");
+                Console.Write($"В рядку #{i + 1} мінімальний елемент {min} має індекси:");
                 for (int j = 0; j < subArrayLength; j++)
                 {
                     if (min == nums[i, j])
                     {
-                        Console.Write($" [{i+1}, {j+1}]");
+                        Console.Write($" [{i + 1}, {j + 1}]");
                     }
                 }
                 Console.WriteLine(".");
@@ -152,7 +152,7 @@ namespace Lab2
         }
         static void SelectionSortTheRow(int[,] nums, int index, int n)
         {
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 int min = i;
                 for (int j = i + 1; j < n; j++)
@@ -200,10 +200,32 @@ namespace Lab2
             //        }
             //    }
             //}
-            for (int i = 0; i < subArrayLength-1; i++)
+            //for (int i = 0; i < subArrayLength - 1; i++)
+            //{
+            //    int smallest = i;
+            //    for (int j = i + 1; j < subArrayLength; j++)
+            //    {
+            //        if (min[smallest] > min[j])
+            //        {
+            //            smallest = j;
+            //        }
+            //    }
+            //    (min[smallest], min[i]) = (min[i], min[smallest]);
+            //    for (int k = 0; k < arrayLength; k++)
+            //    {
+            //        (nums[k, i], nums[k, smallest]) = (nums[k, smallest], nums[k, i]);
+            //    }
+            //}
+            SelectionSortTheColumns(nums, min, subArrayLength, arrayLength);
+            Console.WriteLine("Матриця з відсортованими стовпцями за неспаданням мінімального елемента:");
+            Print2DArray(nums);
+        }
+        static void SelectionSortTheColumns(int[,] nums, int[] min, int n, int m)
+        {
+            for (int i = 0; i < n - 1; i++)
             {
                 int smallest = i;
-                for (int j = i + 1; j < subArrayLength; j++)
+                for (int j = i + 1; j < n; j++)
                 {
                     if (min[smallest] > min[j])
                     {
@@ -211,13 +233,11 @@ namespace Lab2
                     }
                 }
                 (min[smallest], min[i]) = (min[i], min[smallest]);
-                for (int k = 0; k < arrayLength; k++)
+                for (int k = 0; k < m; k++)
                 {
                     (nums[k, i], nums[k, smallest]) = (nums[k, smallest], nums[k, i]);
                 }
             }
-            Console.WriteLine("Матриця з відсортованими стовпцями за неспаданням мінімального елемента:");
-            Print2DArray(nums);
         }
         static int[,] FillTheArray()
         {
